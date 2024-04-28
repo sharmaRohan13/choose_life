@@ -1,18 +1,19 @@
 param (
-    [int]$snooze = 5
-    [string]$promptString = "QUIT ADDICTION, CHOOSE LIFE!"
+    [int]$snooze = 5,
+    [int]$iterations = 10,
+    [string]$addiction = 'PORN'
 )
 
 function Main {
     $continue = Read-Host "Do you want to continue (y) or snooze (t)? [y/t]"
     
     if ($continue -eq "y") {
-        Write-Host "Please type '$promptString' 10 times:"
+        Write-Host "Please type "QUIT $addiction, CHOOSE LIFE!" $iterations times:"
 	Write-Host "Everytime you write a line, Close your eyes be conscious, think of a reason (life, mind, relationships, etc.):"
-        for ($i = 0; $i -lt 10; $i++) {
+        for ($i = 0; $i -lt $iterations; $i++) {
             $inputText = Read-Host -Prompt "Line $($i + 1)"
-            if ($inputText -ne "QUIT PORN, CHOOSE LIFE!") {
-                Write-Host "Incorrect input. Please type 'QUIT PORN, CHOOSE LIFE!' exactly as instructed."
+            if ($inputText -ne "QUIT $addiction, CHOOSE LIFE!") {
+                Write-Host "Incorrect input. Please type 'QUIT $addiction, CHOOSE LIFE!' exactly as instructed."
                 $i--  # Decrement $i to retry the current line
             }
         }
@@ -32,6 +33,7 @@ function Main {
 	Main
     } else {
         Write-Host "Invalid option. Please try again."
+	Main
     }
 }
 
